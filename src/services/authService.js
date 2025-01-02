@@ -1,8 +1,13 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-async function login(req,res){
-    
+async function login(email){
+    let user = await prisma.users.findFirst({
+        where: {
+            email: email.toString()    
+        }
+    });
+    return user;
 }
 
 async function register(data){

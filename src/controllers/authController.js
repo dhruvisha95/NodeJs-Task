@@ -3,8 +3,20 @@ const prisma = new PrismaClient();
 const {login,register} = require('../services/authService');
 
 async function loginUser(req,res){
-    const user = await login();
-    res.send("Login Successfull");
+    const user = await login(req.body.email);
+
+    if(user){
+        if(req.body.password != user.password){
+            res.send("invalid password");
+        }
+        else{
+            res.send("Login Successfull");
+        }
+    }
+    else{
+        res.send("Login Failed");
+    }
+   
 }
 
 async function registerUser(req,res){
