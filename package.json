@@ -18,6 +18,11 @@
   "homepage": "https://github.com/dhruvisha95/NodeJs-Task#readme",
   "description": "",
   "dependencies": {
+    "@prisma/client": "^6.1.0",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "prisma": "^6.1.0"
   }
 }
