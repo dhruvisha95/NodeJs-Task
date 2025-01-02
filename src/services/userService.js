@@ -1,7 +1,10 @@
-// import { users } from "@custom-types/db";
-import { prisma } from "../configs/db";
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
-export async function getUsers(){
-    const users = await prisma.user.findMany();
-    res.json(users);
+async function getUsers(){
+    const users = await prisma.users.findMany();
+    return users;
 }
+
+
+module.exports = getUsers;          

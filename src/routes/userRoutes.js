@@ -1,11 +1,8 @@
-import { getUsers } from '../controllers/userController';
-const express = require('express');
+const getAllUsers = require('../controllers/userController');   
 
+const express = require('express');
 const userRoutes = express.Router();
 
-
-userRoutes.get('/users',()=>{
-    res.send('Get all users')
-});
+userRoutes.get('/users', getAllUsers);
 
 module.exports = userRoutes;

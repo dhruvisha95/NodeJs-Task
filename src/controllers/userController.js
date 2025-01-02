@@ -1,6 +1,8 @@
-import getUsers from "../services/userService";
+const getUsers = require('../services/userService');  
 
-export async function getUsers(req,res){
-    const users = getUsers();
-    return users;
+async function Users(req,res){
+    const users = await getUsers() ;
+    res.json({users:users});
 }
+
+module.exports = Users;
