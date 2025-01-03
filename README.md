@@ -76,7 +76,7 @@ Registers a new user.
   }
   ```
 - **Responses:**
-  - 201: Registration successful.
+  - 200: Registration successful.
   - 400: Invalid input or username/email already exists.
 
 #### **POST /login**
