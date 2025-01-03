@@ -21,7 +21,7 @@ async function loginUser(req, res) {
         }
     }
     else {
-        res.status(404).json({ message: "User Not Found" });
+        res.status(400).json({ message: "User Not Found" });
     }
 }
 
