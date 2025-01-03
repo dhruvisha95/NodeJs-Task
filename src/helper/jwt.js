@@ -4,15 +4,9 @@ dotenv.config({path: './.env'});
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-function generateToken(res,payload){
-
+function generateToken(payload){
     const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
-    res.cookie('token', token, {
-        httpOnly: true, 
-        secure: process.env.NODE_ENV === 'production', 
-        sameSite: 'strict',
-        maxAge: 3600000, 
-    });
+    return token;
 }
 
 module.exports = generateToken

@@ -6,5 +6,14 @@ async function getUsers(){
     return users;
 }
 
+async function getUser(id){
 
-module.exports = getUsers;          
+    const user = await prisma.users.findUnique({  
+        where: {
+            id: parseInt(id)
+        }
+    });
+    return user;
+}
+
+module.exports = {getUsers,getUser};          

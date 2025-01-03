@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function login(email){
-    let user = await prisma.users.findFirst({
+    const user = await prisma.users.findFirst({
         where: {
             email: email.toString()    
         }
@@ -10,22 +10,16 @@ async function login(email){
     return user;
 }
 
-async function register(data){
-    const { name, email, password } = data;
+async function register(user){
 
-    try{
     const newUser = await prisma.users.create({
         data: {
-            name,
-            email,
-            password
+            name: user.name,
+            email: user.email,
+            password: user.password
         }
-    });  
-     return "registration successfull   " 
-    }
-    catch(error){
-        return "error occured"
-    }
+    });
+    return newUser;
 }
 
 module.exports = {login,register};
