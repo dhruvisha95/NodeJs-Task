@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const {login,register} = require('../services/authService');
-const {validateEmail,validatePassword} = require('../validators/validations');
+const {validateEmail,validatePassword} = require('../middleware/validations');
 const generateToken = require('../helper/jwt');
 const { request } = require('express');
 
@@ -29,16 +29,7 @@ async function loginUser(req,res){
 
 async function registerUser(req,res){
 
-    const { name, email, password } = req.body;
-
-    if(!name || !email || !password){
-        res.send("incomplete details")
-    }
-
-    if(!validateEmail(email)|| !validatePassword(password)){
-        return res.send("Invalid Email or password");
-    }
-
+    const {password} = req.body;
     const encryptedPassword = await bcrypt.hash(password, 10);
 
     req.body = {
