@@ -107,8 +107,3 @@ Accessible only with a valid JWT token.
 - **Responses:**
   - 200: Access granted.
   - 401: Unauthorized.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
