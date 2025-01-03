@@ -1,20 +1,21 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const bcrypt = require('bcrypt');
 const {login,register} = require('../services/authService');
+const {validateEmail,validatePassword} = require('../validators/validations');
 
 async function loginUser(req,res){
     const user = await login(req.body.email);
 
     if(user){
-        if(req.body.password != user.password){
-            res.send("invalid password");
+        const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
+        if(isPasswordValid){
+            res.send("Login Successfull");
         }
         else{
-            res.send("Login Successfull");
+            res.send("Invalid Password");
         }
     }
     else{
-        res.send("Login Failed");
+        res.send("User not found");
     }
    
 }
@@ -27,13 +28,19 @@ async function registerUser(req,res){
         res.send("incomplete details")
     }
 
+    if(!validateEmail(email)|| !validatePassword(password)){
+        return res.send("Invalid Email or password");
+    }
+
+    const encryptedPassword = await bcrypt.hash(password, 10);
+
     req.body = {
         ...req.body,
-        password: "113"
+        password: encryptedPassword
     }
 
     const user = await register(req.body);
-    res.send(user.toString());
+    return res.send("Registration Successfull");
 }
 
 module.exports = {loginUser,registerUser}
