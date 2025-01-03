@@ -1,12 +1,13 @@
 const express = require('express');
 const dotenv = require('dotenv');
+dotenv.config({path: './.env'});
+
 
 app = express();
 
 const userRoutes = require('./routes/userRoutes')
 const authRoutes = require('./routes/authRoutes')
 
-dotenv.config({path: './.env'});
 port = process.env.PORT || 3000;
 
 app.use(express.json());

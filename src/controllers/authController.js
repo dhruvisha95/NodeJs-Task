@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const {login,register} = require('../services/authService');
 const {validateEmail,validatePassword} = require('../validators/validations');
+const generateToken = require('../helper/jwt');
+const { request } = require('express');
 
 async function loginUser(req,res){
     const user = await login(req.body.email);
@@ -8,7 +10,12 @@ async function loginUser(req,res){
     if(user){
         const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
         if(isPasswordValid){
-            res.send("Login Successfull");
+            const payload = {"id":req.body.id,"email":req.body.email};
+            const token = generateToken(res,payload);
+            res.status(200).json({
+                message: "Login Successfull",
+                token: token
+            });
         }
         else{
             res.send("Invalid Password");
