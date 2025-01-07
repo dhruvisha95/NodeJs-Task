@@ -6,7 +6,7 @@ function validateData(req, res, next) {
             return res.status(400).send("All input is required");
         }
         
-        const passwordRegex = /^(?=.*\d)[A-Za-z\d]{8,}$/;
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
         if (!passwordRegex.test(password) || !emailRegex.test(email)) {
