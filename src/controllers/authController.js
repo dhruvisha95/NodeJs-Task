@@ -10,7 +10,6 @@ async function loginUser(req, res) {
         if (isPasswordValid) {
             const payload = { "id": user.id, "email": req.body.email };
             const token = generateToken(res, payload);
-            console.log(token);
             res.status(200).json({
                 token: token,
                 message: "Login Successfull",
@@ -36,7 +35,7 @@ async function registerUser(req, res) {
     }
 
     const user = await register(req.body);
-    return res.status(200).json({ message: "Registration Successfull", user: user });
+    return res.status(201).json({ message: "Registration Successfull", user: user });
 }
 
 module.exports = { loginUser, registerUser }
