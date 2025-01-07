@@ -14,8 +14,8 @@ function validateData(req, res, next) {
         }
         next();
     }
-    catch (err) {
-        return res.status(500).send("Internal Server Error");
+    catch (error) {
+        return res.status(500).send("Internal Server Error, ");
     }
 
 }
