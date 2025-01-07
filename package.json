@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+  "lint:fix": "eslint . --fix",
+  "dev": "npm run lint && nodemon index.js"
   },
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dhruvisha95/NodeJs-Task.git"
@@ -26,6 +30,9 @@
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0",
     "prisma": "^6.1.0"
   }
 }
