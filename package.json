@@ -6,8 +6,8 @@
     "test": "jest"
   },
   "jest": {
-    "testEnvironment": "node",
-    "setupFilesAfterEnv":[
+    "testEnvironment": "./src/test/jest-env-prisma.js",
+    "setupFilesAfterEnv": [
       "./src/test/jest.setup.js"
     ]
   },
@@ -26,6 +26,7 @@
   "dependencies": {
     "@prisma/client": "^6.1.0",
     "bcrypt": "^5.1.1",
+    "child_process": "^1.0.2",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
