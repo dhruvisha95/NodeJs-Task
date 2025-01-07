@@ -17,7 +17,6 @@ app.get('/test',async (req,res)=>{
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes); 
 
-
 app.listen(port, () => {    
   console.log(`Server is running on http://localhost:${port}`);
 })
