@@ -1,20 +1,18 @@
-const express = require('express');
-const dotenv = require('dotenv');
-dotenv.config({path: './.env'});
+const express = require("express");
+const dotenv = require("dotenv");
+dotenv.config({ path: "./.env" });
 
+const app = express();
 
-app = express();
+const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
 
-const userRoutes = require('./routes/userRoutes')
-const authRoutes = require('./routes/authRoutes')
-
-port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use('/auth', authRoutes);
-app.use('/user', userRoutes); 
+app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
 
-
-app.listen(port, () => {    
+app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
-})
+});
